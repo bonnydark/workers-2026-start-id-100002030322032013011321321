@@ -1,0 +1,1 @@
+document.querySelectorAll('.sideitem').forEach(item=>item.addEventListener('click',()=>{document.querySelectorAll('.sideitem').forEach(x=>x.classList.remove('active'));item.classList.add('active')}));
