@@ -7,3 +7,7 @@ binding = "DB"
 database_name = "no-name-db"
 database_id = "5fca0aa4-a4c4-4938-8d6a-6203c998893c"
 migrations_dir = "migrations"
+
+[assets]
+directory = "."
+binding = "ASSETS"
