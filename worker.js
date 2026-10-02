@@ -18,7 +18,7 @@ export default{async fetch(req,env){
 const h=headers(req,env);if(req.method==="OPTIONS")return new Response(null,{status:204,headers:{"access-control-allow-origin":h.origin,"access-control-allow-credentials":"true","access-control-allow-methods":"GET,POST,PUT,DELETE,OPTIONS","access-control-allow-headers":"Content-Type,Authorization","vary":"Origin"}});
 const u=new URL(req.url),p=u.pathname.replace(/^\/|\/$/g,"").split("/").filter(Boolean);
 try{
-if(p[0]!=="api")return json({name:"NO-NAME API",version:"2.0.0",ok:true},200,h);
+if(p[0]!=="api"){if(env.ASSETS)return env.ASSETS.fetch(req);return json({name:"NO-NAME API",version:"2.0.0",ok:true},200,h);}
 if(p[1]==="health")return json({ok:true,time:now()},200,h);
 if(!env.DB)return json({error:"D1 binding DB is not configured"},503,h);
 if(p[1]==="auth"){
