@@ -1,9 +1,9 @@
-name = "no-name-api"
+name = "pages"
 main = "worker.js"
-compatibility_date = "2026-10-01"
+compatibility_date = "2026-10-02"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "no-name"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_name = "no-name-db"
+database_id = "5fca0aa4-a4c4-4938-8d6a-6203c998893c"
 migrations_dir = "migrations"
