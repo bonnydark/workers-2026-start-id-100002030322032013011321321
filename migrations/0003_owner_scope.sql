@@ -1,0 +1,10 @@
+ALTER TABLE projects ADD COLUMN owner_id TEXT;
+ALTER TABLE clients ADD COLUMN owner_id TEXT;
+ALTER TABLE services ADD COLUMN owner_id TEXT;
+ALTER TABLE tasks ADD COLUMN owner_id TEXT;
+ALTER TABLE transactions ADD COLUMN owner_id TEXT;
+CREATE INDEX IF NOT EXISTS idx_projects_owner ON projects(owner_id);
+CREATE INDEX IF NOT EXISTS idx_clients_owner ON clients(owner_id);
+CREATE INDEX IF NOT EXISTS idx_services_owner ON services(owner_id);
+CREATE INDEX IF NOT EXISTS idx_tasks_owner ON tasks(owner_id);
+CREATE INDEX IF NOT EXISTS idx_transactions_owner ON transactions(owner_id);
