@@ -1,0 +1,3 @@
+const API_BASE=window.NO_NAME_API||localStorage.getItem("no_name_api")||"";
+async function api(path,options={}){const r=await fetch(API_BASE+"/api"+path,{headers:{"content-type":"application/json",...(options.headers||{})},...options});const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.error||"API request failed");return data}
+window.noNameApi={get:p=>api(p),post:(p,b)=>api(p,{method:"POST",body:JSON.stringify(b)}),put:(p,b)=>api(p,{method:"PUT",body:JSON.stringify(b)}),del:p=>api(p,{method:"DELETE"})};
