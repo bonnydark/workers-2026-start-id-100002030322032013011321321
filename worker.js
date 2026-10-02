@@ -2,7 +2,7 @@ const json=(data,status=200,extra={})=>new Response(JSON.stringify(data),{status
 const now=()=>new Date().toISOString(),id=()=>crypto.randomUUID(),enc=new TextEncoder();
 const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
 async function digest(v){return b64(await crypto.subtle.digest("SHA-256",typeof v==="string"?enc.encode(v):v))}
-async function passwordHash(password,salt){const key=await crypto.subtle.importKey("raw",enc.encode(password),"PBKDF2",false,["deriveBits"]);const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:typeof salt==="string"?enc.encode(salt):salt,iterations:120000,hash:"SHA-256"},key,256);return b64(bits)}
+async function passwordHash(password,salt){const key=await crypto.subtle.importKey("raw",enc.encode(password),"PBKDF2",false,["deriveBits"]);const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:typeof salt==="string"?enc.encode(salt):salt,iterations:100000,hash:"SHA-256"},key,256);return b64(bits)}
 async function hashPassword(password){const salt=b64(crypto.getRandomValues(new Uint8Array(16)));return{salt,hash:await passwordHash(password,salt)}}
 function same(a,b){if(a.length!==b.length)return false;let x=0;for(let i=0;i<a.length;i++)x|=a.charCodeAt(i)^b.charCodeAt(i);return x===0}
 function origin(req,env){return env.APP_ORIGIN||new URL(req.url).origin}
